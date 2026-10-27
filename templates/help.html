@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10233f">
+    <title>Ayuda | Nexo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="pagina">
+        <div class="marca" aria-label="Nexo, calculadora">
+            <div class="marca-icono" aria-hidden="true">∑</div>
+            <div class="marca-texto">NEXO<span>.</span></div>
+        </div>
+        <section class="ayuda">
+            <header class="encabezado">
+                <span class="etiqueta">Guía rápida</span>
+                <h1>Cómo usarla</h1>
+                <p class="introduccion">Todo lo que necesitas para obtener tu resultado.</p>
+            </header>
+            <ul class="lista-ayuda">
+                {% for texto in texto_ayuda %}
+                    <li>{{ texto }}</li>
+                {% endfor %}
+            </ul>
+            <a class="enlace-ayuda" href="{{ url_for('calculadora') }}"><span aria-hidden="true">←&nbsp; </span>Volver a la calculadora</a>
+        </section>
+    </main>
+</body>
+</html>

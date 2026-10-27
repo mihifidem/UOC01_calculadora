@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10233f">
+    <title>Calculadora | Mihifidem</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="pagina">
+        <div class="marca" aria-label="Nexo, calculadora">
+            <div class="marca-icono" aria-hidden="true">∑</div>
+            <div class="marca-texto">MIHIFIDEM<span>.</span></div>
+        </div>
+        <section class="calculadora">
+            <header class="encabezado">
+                <span class="etiqueta">Herramienta inteligente</span>
+                <h1>Calculadora</h1>
+                <p class="introduccion">Operaciones esenciales, con una experiencia simple y precisa.</p>
+            </header>
+            <form method="POST">
+                <div class="campo">
+                    <label for="numero1">Primer número</label>
+                    <input type="number"
+                           id="numero1"
+                           name="numero1"
+                           step="any"
+                           value="{{ numero1 }}"
+                           placeholder="Ej. 24"
+                           required>
+                </div>
+                <div class="campo">
+                    <label for="numero2">Segundo número</label>
+                    <input type="number"
+                           id="numero2"
+                           name="numero2"
+                           step="any"
+                           value="{{ numero2 }}"
+                           placeholder="Ej. 6"
+                           required>
+                    <p class="ayuda-campo">Introduce los valores y elige una operación.</p>
+                </div>
+                <div class="botones" aria-label="Operaciones">
+                    <button type="submit" name="operacion" value="+" aria-label="Sumar">+</button>
+                    <button type="submit" name="operacion" value="-" aria-label="Restar">−</button>
+                    <button type="submit" name="operacion" value="*" aria-label="Multiplicar">×</button>
+                    <button type="submit" name="operacion" value="/" aria-label="Dividir">÷</button>
+                </div>
+            </form>
+            {% if resultado is not none %}
+                <div class="mensaje resultado" role="status">
+                    <span class="mensaje-titulo">Resultado</span>
+                    <span class="resultado-valor">{{ resultado }}</span>
+                </div>
+            {% elif error %}
+                <div class="mensaje error" role="alert">
+                    <span class="mensaje-titulo">No se pudo completar</span>
+                    {{ error }}
+                </div>
+            {% endif %}
+            <a class="enlace-ayuda" href="{{ url_for('help') }}">¿Necesitas ayuda? <span aria-hidden="true">&nbsp;→</span></a>
+        </section>
+    </main>
+</body>
+</html>
